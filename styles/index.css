@@ -10,6 +10,7 @@ body {
     color: #333;
     background-color: #f4f4f9;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
@@ -23,18 +24,59 @@ body {
     padding: 20px 0;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Permite que os itens quebrem em telas menores */
 }
 
 .logo {
     font-size: 24px;
     font-weight: 700;
     color: #2E7D32;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.button2-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button2 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2d2e32;
+    border: 2px solid #2d2e32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.45s;
+    cursor: pointer;
+}
+
+.button2:hover {
+    transform: rotate(360deg);
+    background-color: white;
+    color: #2d2e32;
+}
+
+.button2:hover .btn-svg {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
+      brightness(103%) contrast(103%);
 }
 
 .button {
@@ -45,62 +87,40 @@ body {
     color: white;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .button:hover {
     background-color: #388E3C;
+    transform: translateY(-2px);
 }
 
 /* Hero Section */
 .hero {
     padding: 100px 0;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/images/background.jpg') no-repeat center center/cover;
-    z-index: -1;
-    transform: translateZ(-1px) scale(2); /* Efeito de parallax */
 }
 
 .hero-title {
-    font-size: 48px;
+    font-size: 2.5rem;
     font-weight: 700;
     color: #2E7D32;
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    margin-bottom: 1rem;
 }
 
 .hero-subtitle {
-    font-size: 24px;
+    font-size: 1.25rem;
     color: #555;
-    margin-bottom: 30px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
+    margin-bottom: 2rem;
 }
 
 .hero-image {
-    width: 220px;
-    height: 220px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #ffffff;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s;
 }
 
 /* About Section */
@@ -110,30 +130,25 @@ body {
 }
 
 .section-title {
-    font-size: 36px;
+    font-size: 2rem;
     font-weight: 700;
     color: #2E7D32;
     margin-bottom: 20px;
     text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .about-text {
-    font-size: 18px;
+    font-size: 1rem;
     color: #555;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
 }
 
 /* Skills Section */
 .skills {
     padding: 60px 0;
+    background-color: #f4f4f9;
 }
 
 .skills-grid {
@@ -145,46 +160,17 @@ body {
 
 .skill-card {
     background-color: #ffffff;
-    padding: 30px;
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, opacity 1s ease-in-out;
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-.skill-card:nth-child(1) {
-    transition-delay: 0.1s;
-}
-
-.skill-card:nth-child(2) {
-    transition-delay: 0.3s;
-}
-
-.skill-card:nth-child(3) {
-    transition-delay: 0.5s;
-}
-
-.skill-card:nth-child(4) {
-    transition-delay: 0.7s;
-}
-
-.skill-card:nth-child(5) {
-    transition-delay: 0.9s;
-}
-
-/* Ativação quando entra na tela */
-.skill-card.show {
-    opacity: 1;
-    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-card:hover {
-    transform: translateY(-15px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
-
 
 .skill-icon {
     font-size: 48px;
@@ -192,14 +178,14 @@ body {
 }
 
 .skill-title {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 600;
     color: #2E7D32;
     margin-bottom: 15px;
 }
 
 .skill-description {
-    font-size: 16px;
+    font-size: 1rem;
     color: #666;
     margin-bottom: 20px;
 }
@@ -236,17 +222,6 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.certificate-item:nth-child(1) {
-    transition-delay: 0.2s;
-}
-
-.certificate-item:nth-child(2) {
-    transition-delay: 0.4s;
 }
 
 .certificate-item:hover {
@@ -268,96 +243,114 @@ body {
 }
 
 .certificate-caption h3 {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
     color: #2E7D32;
     margin-bottom: 10px;
 }
 
 .certificate-caption p {
-    font-size: 16px;
+    font-size: 1rem;
     color: #666;
 }
 
 /* Footer */
 .footer {
-    padding: 20px 0;
+    padding: 40px 0;
     background-color: #ffffff;
     text-align: center;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .footer-text {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #777;
 }
 
-/* Classes para animação */
-.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-/* ##################################################################################### */
-/* From Uiverse.io by wilsondesouza */ 
-/* From Uiverse.io by McHaXYT */ 
-.button2-container {
-    position: absolute;
-    /* top: 20px; */
-    right: 180px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.0rem;
-    z-index: 1000;
-}
-  
-.button2 {
-    cursor: pointer;
-    text-decoration: none;
-    color: #4f8d57;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #4CAF50;
-    border: 2px solid #ffffff;
-    transition: all 0.45s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-  
-.button2:hover {
-    transform: rotate(360deg) scale(1.1);
-    background-color: #ffffff;
-    color: #5e975c;
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button2-container {
+        margin-top: 10px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .about-text {
+        font-size: 0.9rem;
+    }
+
+    .skill-title {
+        font-size: 1.25rem;
+    }
+
+    .skill-description {
+        font-size: 0.9rem;
+    }
+
+    .certificate-caption h3 {
+        font-size: 1.1rem;
+    }
+
+    .certificate-caption p {
+        font-size: 0.9rem;
+    }
 }
 
-.button2:hover .btn-svg {
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(103%) contrast(103%);
-}
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.75rem;
+    }
 
-  
-  
-  /* Animação de fade-in */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
 
-/* Aplica a animação aos elementos */
-.hero-title, .hero-subtitle, .hero-image, .section-title, .about-text, .skill-card, .certificate-item {
-    opacity: 0; /* Começa invisível */
-    transform: translateY(20px); /* Começa um pouco abaixo */
-    animation: fadeIn 0.8s ease-out forwards;
-}
+    .hero-image {
+        width: 100px;
+        height: 100px;
+    }
 
-/* Delays para animação sequencial */
-.hero-title { animation-delay: 0.2s; }
-.hero-subtitle { animation-delay: 0.4s; }
-.hero-image { animation-delay: 0.6s; }
-.section-title { animation-delay: 0.2s; }
-.about-text { animation-delay: 0.4s; }
-.skill-card:nth-child(1) { animation-delay: 0.2s; }
-.skill-card:nth-child(2) { animation-delay: 0.4s; }
-.certificate-item:nth-child(1) { animation-delay: 0.2s; }
-.certificate-item:nth-child(2) { animation-delay: 0.4s; }
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .about-text {
+        font-size: 0.8rem;
+    }
+
+    .skill-title {
+        font-size: 1.1rem;
+    }
+
+    .skill-description {
+        font-size: 0.8rem;
+    }
+
+    .certificate-caption h3 {
+        font-size: 1rem;
+    }
+
+    .certificate-caption p {
+        font-size: 0.8rem;
+    }
+}
